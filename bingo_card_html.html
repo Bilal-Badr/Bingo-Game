@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Bingo</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin: 0;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 3s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #e0e6ed;
+            margin-top: 10px;
+        }
+        
+        .bingo-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        .bingo-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .bingo-cell {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            line-height: 1.3;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .bingo-cell:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .bingo-cell.selected {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            border-color: #fff;
+            transform: scale(0.95);
+        }
+        
+        .bingo-cell.selected::after {
+            content: "✓";
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(255,255,255,0.9);
+            color: #ff6b6b;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .instructions {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .instructions h3 {
+            margin-top: 0;
+            font-size: 1.3rem;
+        }
+        
+        .instructions p {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+        
+        .emoji {
+            font-size: 1.2em;
+            margin: 0 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2rem;
+            }
+            
+            .bingo-cell {
+                font-size: 0.75rem;
+                padding: 12px;
+            }
+            
+            .bingo-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 class="title">SOCIAL MEDIA BINGO</h1>
+        <p class="subtitle">🎯 اكتشف عاداتك على السوشيال ميديا 🎯</p>
+    </div>
+    
+    <div class="bingo-container">
+        <div class="bingo-grid" id="bingoGrid">
+            <div class="bingo-cell" onclick="toggleCell(this)">نشرت صورة أو فيديو وحذفته بعدين</div>
+            <div class="bingo-cell" onclick="toggleCell(this)">قارنت نفسي بحد على Instagram أو TikTok</div>
+            <div class="bingo-cell" onclick="toggleCell(this)">سهرت لوقت متأخر عشان أتابع Stories أو فيديوهات</div>
+            <div class="bingo-cell" onclick="toggleCell(this)">حسيت بالغيرة من منشور حد تاني</div>
+            <div class="bingo-cell" onclick="toggleCell(this)">نسيت أكل أو أشرب عشان كنت مشغول على السوشيال ميديا</div>
+            
+            <div class="bingo-cell" onclick="toggleCell(this)">فتحت تطبيق سوشيال ميديا بدون هدف معين، بس عشان أضيع وقت</div>
+            <div class="bingo-cell" onclick="toggleCell(this)">عملت "Digital Detox" (فصلت عن السوشيال ميديا) ليوم كامل أو أكثر</div>
+            <div class="bingo-cell" onclick="toggleCell(this)">حسيت بالضغط عشان أنشر حاجة "مثالية"</div>
+            <div class="bingo-cell" onclick="toggleCell(this)">شفت إعلان على السوشيال ميديا وفعلاً اشتريت المنتج</div>
+            <div class="bingo-cell" onclick="toggleCell(this)">قريت تعليقات سلبية أو دخلت في نقاش حاد على النت</div>
+            
+            <div class="bingo-cell" onclick="toggleCell(this)">حسيت إني لازم أرد على رسالة فوراً، حتى لو كنت مشغول</div>
+            <div class="bingo-cell" onclick="toggleCell(this)">استخدمت فلتر أو تعديل على صورتي عشان أبدو أحسن</div>
+            <div class="bingo-cell" onclick="toggleCell(this)">اكتشفت معلومة مهمة أو مهارة جديدة من السوشيال ميديا</div>
+            <div class="bingo-cell" onclick="toggleCell(this)">تواصلت مع أصدقاء أو أقارب بعيدين بفضل السوشيال ميديا</div>
+            <div class="bingo-cell" onclick="toggleCell(this)">حسيت إن حياتي مش زي حياة الناس اللي بشوفها على السوشيال ميديا</div>
+            
+            <div class="bingo-cell" onclick="toggleCell(this)">تابعت حسابات بتلهمني أو بتعلمني حاجات جديدة</div>
+            <div class="bingo-cell" onclick="toggleCell(this)">حسيت بالوحدة أو العزلة بالرغم من إني متصل بالكل</div>
+            <div class="bingo-cell" onclick="toggleCell(this)">شاركت في تحدي (Challenge) على TikTok أو أي منصة تانية</div>
+            <div class="bingo-cell" onclick="toggleCell(this)">استخدمت السوشيال ميديا عشان أتابع الأخبار أو الأحداث الجارية</div>
+            <div class="bingo-cell" onclick="toggleCell(this)">حسيت إنني لازم أظهر سعيد أو مثالي على السوشيال ميديا</div>
+            
+            <div class="bingo-cell" onclick="toggleCell(this)">ضيعت وقت طويل في التمرير (Scrolling) بدون ما أحس بالوقت</div>
+            <div class="bingo-cell" onclick="toggleCell(this)">حذفت تطبيق سوشيال ميديا لفترة ورجعته تاني</div>
+            <div class="bingo-cell" onclick="toggleCell(this)">حسيت إنني مدمن على السوشيال ميديا</div>
+            <div class="bingo-cell" onclick="toggleCell(this)">استخدمت السوشيال ميديا عشان أساعد قضية أو أنشر وعي</div>
+            <div class="bingo-cell" onclick="toggleCell(this)">اتعلمت رقصة أو تريند جديد من السوشيال ميديا</div>
+        </div>
+        
+        <div class="instructions">
+            <h3>🎮 طريقة اللعب</h3>
+            <p><span class="emoji">1️⃣</span> اضغط على أي مربع ينطبق عليك (فعلته أو مريت بيه)</p>
+            <p><span class="emoji">2️⃣</span> أول واحد يكمل صف أفقي، رأسي، أو قطري يقول "بينجو!" ويفوز</p>
+            <p><span class="emoji">3️⃣</span> شارك تجاربك مع زملائك واستمتع بالنقاش!</p>
+        </div>
+    </div>
+    
+    <script>
+        function toggleCell(cell) {
+            cell.classList.toggle('selected');
+            checkBingo();
+        }
+        
+        function checkBingo() {
+            const cells = document.querySelectorAll('.bingo-cell');
+            const grid = [];
+            
+            // Convert to 5x5 grid
+            for (let i = 0; i < 5; i++) {
+                grid[i] = [];
+                for (let j = 0; j < 5; j++) {
+                    grid[i][j] = cells[i * 5 + j].classList.contains('selected');
+                }
+            }
+            
+            // Check rows
+            for (let i = 0; i < 5; i++) {
+                if (grid[i].every(cell => cell)) {
+                    celebrateBingo();
+                    return;
+                }
+            }
+            
+            // Check columns
+            for (let j = 0; j < 5; j++) {
+                if (grid.every(row => row[j])) {
+                    celebrateBingo();
+                    return;
+                }
+            }
+            
+            // Check diagonals
+            if (grid.every((row, i) => row[i])) {
+                celebrateBingo();
+                return;
+            }
+            
+            if (grid.every((row, i) => row[4 - i])) {
+                celebrateBingo();
+                return;
+            }
+        }
+        
+        function celebrateBingo() {
+            setTimeout(() => {
+                alert('🎉 بينجو! 🎉\nمبروك! لقد فزت!\nشارك تجاربك مع الآخرين!');
+            }, 100);
+        }
+    </script>
+</body>
+</html>
+
